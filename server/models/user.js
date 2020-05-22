@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt-nodejs');
-const crypto = require('crypto');
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import bcrypt from 'bcrypt-nodejs';
+import crypto from 'crypto';
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
 // Every user has an email and password.  The password is not stored as
 // plain text - see the authentication helpers below.

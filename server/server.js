@@ -1,12 +1,18 @@
-const express = require('express');
-const models = require('./models');
-const expressGraphQL = require('express-graphql');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const passport = require('passport');
-const passportConfig = require('./services/auth');
-const MongoStore = require('connect-mongo')(session);
-const schema = require('./schema/schema');
+import express from 'express';
+import models from './models';
+import expressGraphQL from 'express-graphql';
+import mongoose from 'mongoose';
+import session from 'express-session';
+import passport from 'passport';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpack from 'webpack';
+
+import passportConfig from './services/auth';
+import mongoConnect from 'connect-mongo';
+import schema from './schema/schema';
+import webpackConfig from '../webpack.config.js';
+
+const MongoStore = mongoConnect(session);
 
 // Create a new Express application
 require('dotenv').config();
@@ -59,9 +65,9 @@ app.use('/graphql', expressGraphQL({
 // Webpack runs as a middleware.  If any request comes in for the root route ('/')
 // Webpack will respond with the output of the webpack process: an HTML file and
 // a single bundle.js output of all of our client side Javascript
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpack = require('webpack');
-const webpackConfig = require('../webpack.config.js');
+// const webpackMiddleware = require('webpack-dev-middleware');
+// const webpack = require('webpack');
+// const webpackConfig = require('../webpack.config.js');
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
-module.exports = app;
+export default app;

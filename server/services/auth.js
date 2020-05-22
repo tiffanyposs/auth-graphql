@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+import mongoose from 'mongoose';
+import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local'
 
 const User = mongoose.model('user');
 
@@ -88,4 +88,8 @@ function logout(req) {
   return user;
 }
 
-module.exports = { signup, login, logout };
+export default {
+  signup,
+  login,
+  logout
+};
