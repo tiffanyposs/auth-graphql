@@ -31,7 +31,7 @@ mongoose.connect(MONGO_URI, {
     useUnifiedTopology: true,
   });
 mongoose.connection
-    .once('open', () => console.log('Connected to MongoLab instance.'))
+    .once('open', () => console.log('Connected to Mongo instance.'))
     .on('error', error => console.log('Error connecting to MongoLab:', error));
 
 // Configures express to use sessions.  This places an encrypted identifier
