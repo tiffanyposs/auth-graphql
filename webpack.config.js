@@ -10,6 +10,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // babel
       {
         use: {
           loader: 'babel-loader',
@@ -19,6 +20,11 @@ module.exports = {
         },
         test: /\.js$/,
         exclude: /node_modules/,
+      },
+      // css
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ]
   },
