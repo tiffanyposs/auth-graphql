@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import AuthForm from './AuthForm';
 import CurrentUser from '../queries/CurrentUser';
-import Login from '../mutations/Login';
+import Signup from '../mutations/Signup';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
   constructor(props) {
     super(props);
     this.state = { errors: [] }
@@ -27,7 +27,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div>
-        <h3>Login</h3>
+        <h3>Signup</h3>
         <AuthForm
           errors={this.state.errors}
           onSubmit={this.onSubmit.bind(this)}
@@ -37,4 +37,4 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(Login)(LoginForm);
+export default graphql(Signup)(SignupForm);
