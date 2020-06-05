@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import { hashHistory } from 'react-router';
+import CurrentUser from '../queries/CurrentUser';
 
 class AuthForm extends Component {
   constructor(props) {
@@ -6,6 +9,13 @@ class AuthForm extends Component {
     this.state = {
       email: '',
       password: '',
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    // redirect to dashboard if user becomes signed in
+    if (nextProps.data.user && !this.props.doNotRedirect) {
+      hashHistory.push('/dashboard');
     }
   }
 
@@ -54,4 +64,4 @@ class AuthForm extends Component {
   }
 }
 
-export default AuthForm;
+export default graphql(CurrentUser)(AuthForm);

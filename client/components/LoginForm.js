@@ -11,13 +11,6 @@ class LoginForm extends Component {
     this.state = { errors: [] }
   }
 
-  componentWillUpdate(nextProps) {
-    // redirect to dashboard if user becomes signed in
-    if (nextProps.data.user) {
-      hashHistory.push('/dashboard');
-    }
-  }
-
   onSubmit({ email, password }) {
     this.props.mutate({
       variables: { email, password },
@@ -45,6 +38,4 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(CurrentUser)(
-  graphql(Login)(LoginForm)
-);
+export default graphql(Login)(LoginForm);
