@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { hashHistory } from 'react-router';
 import AuthForm from './AuthForm';
 import CurrentUser from '../queries/CurrentUser';
 import Login from '../mutations/Login';
@@ -8,6 +9,13 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = { errors: [] }
+  }
+
+  componentWillUpdate(nextProps) {
+    // redirect to dashboard if user becomes signed in
+    if (nextProps.data.user) {
+      hashHistory.push('/dashboard');
+    }
   }
 
   onSubmit({ email, password }) {
@@ -37,4 +45,6 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(Login)(LoginForm);
+export default graphql(CurrentUser)(
+  graphql(Login)(LoginForm)
+);
